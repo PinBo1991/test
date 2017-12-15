@@ -63,8 +63,10 @@ public class SimilarityTest {
 
 	public static void main(String[] args) {
 		SimilarityTest t = new SimilarityTest();
-		String str1 = "asd";
-		String str2 = "sd";
+//		String str1 = "asd";
+//		String str2 = "sd";
+		String str1 = "政府公报公开政府信息数";
+		String str2 = "公报公开政府信息";
 		System.out.println(t.getSimilarityRatio(str1, str2));
 	}
 }
