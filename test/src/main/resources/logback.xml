@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+	<property name="APP_Name" value="TestLogger" />
+	<contextName>${APP_Name}</contextName>
+	<property name="File_Log_Pattern" value="%-5level %d{yyyy-MM-dd HH:mm:ss} %logger{60}:%line -%msg%n" />
+	
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>${File_Log_Pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="LOGFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>D:/TestLogback/test.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<MaxHistory>30</MaxHistory><!-- 日更新%d{yyyy-MM-dd}:MaxHistory就指的是日;月更新%d{yyyy-MM}:MaxHistory就指的是月 -->
+		</rollingPolicy>
+		<encoder>
+			<pattern>${File_Log_Pattern}</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.grt.test.TestController" level="DEBUG" />
+	
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="LOGFILE" />
+	</root>
+</configuration>

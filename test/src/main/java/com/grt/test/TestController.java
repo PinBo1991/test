@@ -4,6 +4,8 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,6 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class TestController {
+	
+	private static final Logger logger = LoggerFactory.getLogger(TestController.class);
 	
 //	@RequestMapping("fire")
 //	@ResponseBody
@@ -54,4 +58,15 @@ public class TestController {
 		System.out.println("aaaaaa");
 		return "111";
 	}
+	
+	@RequestMapping("/log")
+	@ResponseBody
+	public String testLog(){
+		for (int i = 0; i < 10000; i++) {
+			logger.debug(i+" aaaaaaaaaaaa");
+		}
+		return "完成";
+	}
+	
+	
 }
