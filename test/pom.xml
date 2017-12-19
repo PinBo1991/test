@@ -70,12 +70,6 @@
 			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- 日志处理 -->
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.9</version>
-		</dependency>
 		<!-- JUnit是一个Java语言的单元测试框架 -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -154,7 +148,15 @@
 			<artifactId>amqp-client</artifactId>
 			<version>3.6.5</version>
 		</dependency>
-				<dependency>
+		<!-- logback -->
+		<dependency>
+			<!--主要介绍的是这个jar包，这个包是负责logback随着项目启动的jar包 -->
+			<groupId>org.logback-extensions</groupId>
+			<artifactId>logback-ext-spring</artifactId>
+			<version>0.1.4</version>
+		</dependency>
+		<!--slf4j的jar包 -->
+		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.13</version>
@@ -164,6 +166,7 @@
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>1.7.13</version>
 		</dependency>
+		<!--logback的jar包 -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-core</artifactId>

@@ -22,6 +22,11 @@
 	</appender>
 
 	<logger name="com.grt.test.TestController" level="DEBUG" />
+	<logger name="org.springframework.web.servlet" level="WARN" />
+	<logger name="o.s.web.context.support" level="WARN" />
+	<logger name="o.springframework.beans.factory" level="WARN" />
+	<logger name="o.s.w.s.mvc.method.annotation" level="WARN" />
+	<logger name="o.s.web.servlet.handler" level="WARN" />
 	
 	<root level="INFO">
 		<appender-ref ref="CONSOLE" />
