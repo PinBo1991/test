@@ -27,7 +27,9 @@
 	<logger name="o.springframework.beans.factory" level="WARN" />
 	<logger name="o.s.w.s.mvc.method.annotation" level="WARN" />
 	<logger name="o.s.web.servlet.handler" level="WARN" />
+	<!-- <logger name="com.grt.WordSegment.WordSegmentTest" level="INFO" /> -->
 	
+	<!-- <root level="WARN"> -->
 	<root level="INFO">
 		<appender-ref ref="CONSOLE" />
 		<appender-ref ref="LOGFILE" />
