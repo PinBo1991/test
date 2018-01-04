@@ -9,8 +9,9 @@ public class RegexTest {
 		// test02();
 		// test03();
 		// test04();
-//		test05();
-		test06();
+		// test05();
+		// test06();
+		test07();
 	}
 
 	public static void test01() {
@@ -89,11 +90,21 @@ public class RegexTest {
 		String reg = "(.*?)(信息)(.*?)(公开)(.*?)(?!例).*(?=[\\pP])";
 		Pattern p = Pattern.compile(reg);
 		Matcher m = p.matcher(str + ".");
-		if (m.find()) 
+		if (m.find())
 			System.out.println(m.group());
 	}
 
 	public static void test07() {
+//		String str = "aaabbbccc";
+//		str.replace("aaa", "===");
+//		str.replaceAll("aaa", "===");
+//		System.out.println(str);
+		
+		String target = "aaa";
+		String replacement = "b";
+		System.out.println("原输出：" + target);
+		target = target.replace("aa", replacement);
+		System.out.println("替换后：" + target);
 	}
 
 }
