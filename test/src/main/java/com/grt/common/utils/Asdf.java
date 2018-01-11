@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 
 import com.swetake.util.Qrcode;
 
+
 public class Asdf {
 	public void encoderQRCode(String content, String imgPath, String imgType) throws Exception {  
 		Qrcode qrcodeHandler = new Qrcode();  
