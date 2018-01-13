@@ -9,7 +9,10 @@
 <body>
 	<script type="text/javascript">
 		function testImport(){
-			alert("来自js.jsp页面的testImport()方法");
+			var result = "asdf";
+			if(ressult){
+				alert("来自js.jsp页面的testImport()方法");
+			}
 		}
 	</script>
 	我是js.jsp页面	

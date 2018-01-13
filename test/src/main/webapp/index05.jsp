@@ -9,6 +9,19 @@
 <script type="text/javascript" src="resources/js/js.js"></script>
 </head>
 <body>
-<input type="button" id="sleBtn" value="testSleVal" onclick="testaaa();">
+	<!-- 
+	<input type="button" id="sleBtn1" class="sleBtn1" value="testSleVal1" btnType="testBtn1">
+	<input type="button" id="sleBtn2" class="sleBtn2" value="testSleVal2" btnType="testBtn2">
+	 -->
+	 
+	<!-- <input type="button" id="sleBtn" value="testSleVal" btnType="testBtn" onclick="testaaa();"> -->
+	
+	<div id="sleBtn1" class="sleBtn1_test" value="testSleVal1" btnType="testBtn1">asdf</div>
+	<div id="sleBtn2" class="sleBtn2_test" value="testSleVal2" btnType="testBtn2">uipo</div>
+	<!-- <div id="sleBtn12" class="sleBtn1_test .sleBtn2_test" value="testSleVal12" btnType="testBtn12">zxcv</div> -->
+	
+	
+	
+	
 </body>
 </html>
