@@ -27,9 +27,26 @@ $(function(){
 		if(result){
 			alert("来自js.jsp页面的testImport()方法");
 		}
+		test02();
 	})
 	
 })
+
+function test02(){
+	alert("进入test02方法");
+	test01(123,callback);
+	function callback(id){
+		alert("执行回调");
+		alert("callback -->id"+id);
+	}
+}
+
+function test01(id,callback){
+	alert("test01 -->id"+id);
+	callback(id);
+}
+
+
 //此种方式$(this)不生效
 function testaaa(){
 	//var result;
