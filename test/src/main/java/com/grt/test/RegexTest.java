@@ -11,7 +11,8 @@ public class RegexTest {
 		// test04();
 		// test05();
 		// test06();
-		test07();
+		//test07();
+		test08();
 	}
 
 	public static void test01() {
@@ -106,5 +107,38 @@ public class RegexTest {
 		target = target.replace("aa", replacement);
 		System.out.println("替换后：" + target);
 	}
+	
+	
+	public static void test08() {
+		Pattern p = Pattern.compile("\\d+");
+
+//		Matcher m = p.matcher("aaa2223bb4455");
+//		System.out.println(m.find()); // 匹配2223
+//		System.out.println(m.group()); // 返回2223
+//	    while (m.find()) {  
+//	    	System.out.println(m.group());
+//	    }
+		
+//		Matcher m = p.matcher("aaa2223bb4455");
+//		System.out.println(m.find()); // 匹配2223
+//		System.out.println(m.group()); // 返回2223
+	    
+//	    Matcher m = p.matcher("aaa2223bb4455");
+//	    while (m.find()) {  
+//	    	System.out.println(m.group());
+//	    }
+	    
+//		System.out.println(m.find()); // 匹配2223
+//		System.out.println(m.start()); // 返回3
+//		System.out.println(m.end()); // 返回7,返回的是2223后的索引号
+//		System.out.println(m.group()); // 返回2223
+//		while (m.find()) {  
+//			System.out.println(m.group());
+//		}
+
+	    
+	}
+
+	
 
 }
