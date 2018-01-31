@@ -14,7 +14,7 @@
 	<!--开起注解方式的springmvc -->
 	<mvc:annotation-driven />
 	<!--设置spring容器的扫描范围，扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
-	<context:component-scan base-package="com.grt.**" />
+	<context:component-scan base-package="com.grt.**,com.dzpykj.**" />
 	
 	<!--让spring前端控制器跳过静态的资源请求 location路径, /resources/**这个文件夹下所有资源全部跳过 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />

@@ -1,6 +1,12 @@
 package com.dzpykj.enums.test02;
 
 public class Constant {
+	
+	public enum Gender{
+		//男,女,未知
+		man,woman,unkown
+	}
+
 	public enum Color {
 		RED("红色", 1){
 			@Override
