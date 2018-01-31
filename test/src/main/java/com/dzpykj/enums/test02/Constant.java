@@ -13,7 +13,7 @@ public class Constant {
 			public String getName() {
 				return "红色:就跟你们不一样";
 			}
-
+			
 			@Override
 			String getAll() {
 				return "红色enum的个性内容->"+this.getIndex()+" : "+this.getName();
