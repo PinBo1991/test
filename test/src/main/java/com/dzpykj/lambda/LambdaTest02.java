@@ -71,6 +71,7 @@ public class LambdaTest02 {
 		Map<Object, Long> collect2 = users.stream().collect(Collectors.groupingBy(s -> s.get("age"),Collectors.counting()));
 		System.out.println(collect2);
 		
+		// FIXME MacOS有问题
 		Map<Object, Map<Object, List<Map<String, Object>>>> collect3 = 
 				users.stream().collect(Collectors.groupingBy(s -> s.get("age"),Collectors.groupingBy(s -> s.get("id"))));
 		System.out.println(collect3);
