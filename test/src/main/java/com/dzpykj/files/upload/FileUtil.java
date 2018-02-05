@@ -1,4 +1,4 @@
-package com.dzpykj.files;
+package com.dzpykj.files.upload;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;

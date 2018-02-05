@@ -1,4 +1,4 @@
-package com.dzpykj.files;
+package com.dzpykj.files.upload;
 
 import java.io.File;
 import java.io.IOException;
@@ -83,9 +83,13 @@ public class FileUploadUtils {
 	}
 	
 	private static String generateFileName(){
-		String dateStr = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		String dateStr = new SimpleDateFormat("yyMMddHHmmss").format(new Date());
 		long timeMillis = System.currentTimeMillis();
 		int random = new Random().nextInt(90)+10;
 		return dateStr+timeMillis+random;
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
 	}
 }

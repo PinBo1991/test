@@ -9,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.dzpykj.files.FileUploadDataBucket;
-import com.dzpykj.files.FileUploadUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
