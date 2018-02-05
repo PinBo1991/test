@@ -21,6 +21,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.poi.hwpf.extractor.WordExtractor;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
@@ -132,18 +133,27 @@ public class ReadFileUtil {
 			is = new FileInputStream(file);
 			wb = WorkbookFactory.create(is);
 			Sheet sheet = wb.getSheetAt(0); // 获得第一个表单
-			int totalRow = sheet.getLastRowNum();// 得到excel的总记录条数
-			//System.out.println("总行数:" + totalRow + ",总列数:" + columtotal);
-			for (int i = 1; i <= totalRow; i++) {// 遍历行
-				int columtotal = sheet.getRow(i).getPhysicalNumberOfCells();// 表头总共的列数
-				for (int j = 0; j < columtotal; j++) {
-					//sheet.getRow(i).getCell(j).setCellType(CellType.BOOLEAN);
-					sheet.getRow(i).getCell(j).setCellType(Cell.CELL_TYPE_STRING);
-					sb.append(sheet.getRow(i).getCell(j).getStringCellValue() + " ");
-					//System.out.print(sheet.getRow(i).getCell(j).getStringCellValue() + " ");
+			if(sheet != null){
+				int totalRow = sheet.getLastRowNum();// 得到excel的总记录条数
+				//System.out.println("总行数:" + totalRow + ",总列数:" + columtotal);
+				for (int i = 0; i <= totalRow; i++) {// 遍历行
+					Row row = sheet.getRow(i);
+					int columtotal = row.getLastCellNum();// 表头总共的列数
+					if(row != null){
+						for (int j = 0; j < columtotal; j++) {
+							//sheet.getRow(i).getCell(j).setCellType(CellType.BOOLEAN);
+							Cell cell = sheet.getRow(i).getCell(j);
+							if(cell != null){
+								cell.setCellType(CellType.STRING);
+								sb.append(cell.getStringCellValue() + " ");
+								//System.out.print(sheet.getRow(i).getCell(j).getStringCellValue() + " ");
+							}
+						}
+						//System.out.println();
+					}
 				}
-				//System.out.println();
 			}
+			
 
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
@@ -213,6 +223,7 @@ public class ReadFileUtil {
 //		System.out.println(readPdf(new File("C:\\694fujian\\201712211552480401.pdf")));
 //		System.out.println(readExcel(new File("C:\\694fujian\\201712201759270601.xls")));
 		
-		System.out.println(getText(new File("E:\\694fujian\\201801221425280901.xls")));
+//		System.out.println(getText(new File("E:\\Test.xlsx")));
+		getText(new File("E:\\Test.xlsx"));
 	}
 }

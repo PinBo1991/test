@@ -1,6 +1,5 @@
 package com.dzpykj.files.excel;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,37 +31,26 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Maps;
 
 /**
  * Excel操作工具类
- * 
  * @author ChaiXY
  */
 public class ExcelUtils {
 
 	// @Value("${file_base_path}")
-	// private static String FILE_BASE_PATH;//文件的基础路径
-	// private static String FILE_BASE_PATH = System.getProperty("user.dir") +
-	// File.separator + "excel" + File.separator;;//文件的基础路径
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtils.class);
+	// private static String fileBasePath;//文件的基础路径
+	// private static String fileBasePath = System.getProperty("user.dir") + File.separator + "excel" + File.separator;;//文件的基础路径
 
 	public static final String OFFICE_EXCEL_XLS = "xls";
 	public static final String OFFICE_EXCEL_XLSX = "xlsx";
 
-	public static final String DOT = ".";
-
 	/**
 	 * 读取指定Sheet也的内容
-	 * 
-	 * @param filepath
-	 *            filepath 文件全路径
-	 * @param sheetNo
-	 *            sheet序号,从0开始,如果读取全文sheetNo设置null
+	 * @param filepath filepath 文件全路径
+	 * @param sheetNo sheet序号,从0开始,如果读取全文sheetNo设置null
 	 */
 	public static String readExcel(String filepath, Integer sheetNo)
 			throws EncryptedDocumentException, InvalidFormatException, IOException {
@@ -90,9 +78,7 @@ public class ExcelUtils {
 
 	/**
 	 * 根据文件路径获取Workbook对象
-	 * 
-	 * @param filepath
-	 *            文件全路径
+	 * @param filepath 文件全路径
 	 */
 	public static Workbook getWorkbook(String filepath)
 			throws EncryptedDocumentException, InvalidFormatException, IOException {
@@ -126,15 +112,13 @@ public class ExcelUtils {
 
 	/**
 	 * 获取后缀
-	 * 
-	 * @param filepath
-	 *            filepath 文件全路径
+	 * @param filepath filepath 文件全路径
 	 */
 	private static String getSuffiex(String filepath) {
 		if (StringUtils.isBlank(filepath)) {
 			return "";
 		}
-		int index = filepath.lastIndexOf(DOT);
+		int index = filepath.lastIndexOf(".");
 		if (index == -1) {
 			return "";
 		}
@@ -143,28 +127,33 @@ public class ExcelUtils {
 
 	private static String readExcelSheet(Sheet sheet) {
 		StringBuilder sb = new StringBuilder();
-		int rowNos = sheet.getLastRowNum();// 得到excel的总记录条数
-		for (int i = 1; i <= rowNos; i++) {// 遍历行
-			Row row = sheet.getRow(i);
-			int columNos = row.getPhysicalNumberOfCells();// 表头总共的列数
-			for (int j = 0; j < columNos; j++) {
-				Cell cell = row.getCell(j);
-				cell.setCellType(CellType.STRING);
-				sb.append(cell.getStringCellValue() + " ");
-				// System.out.print(cell.getStringCellValue() + " ");
+		
+		if(sheet != null){
+			int rowNos = sheet.getLastRowNum();// 得到excel的总记录条数
+			for (int i = 0; i <= rowNos; i++) {// 遍历行
+				Row row = sheet.getRow(i);
+				if(row != null){
+					int columNos = row.getLastCellNum();// 表头总共的列数
+					for (int j = 0; j < columNos; j++) {
+						Cell cell = row.getCell(j);
+						if(cell != null){
+							cell.setCellType(CellType.STRING);
+							sb.append(cell.getStringCellValue() + " ");
+							// System.out.print(cell.getStringCellValue() + " ");
+						}
+					}
+					// System.out.println();
+				}
 			}
-			// System.out.println();
 		}
+		
 		return sb.toString();
 	}
 
 	/**
 	 * 读取指定Sheet页的表头
-	 * 
-	 * @param filepath
-	 *            filepath 文件全路径
-	 * @param sheetNo
-	 *            sheet序号,从0开始,必填
+	 * @param filepath filepath 文件全路径
+	 * @param sheetNo sheet序号,从0开始,必填
 	 */
 	public static Row readTitle(String filepath, int sheetNo)
 			throws IOException, EncryptedDocumentException, InvalidFormatException {
@@ -183,7 +172,7 @@ public class ExcelUtils {
 	public static Row readTitle(Sheet sheet) throws IOException {
 		Row returnRow = null;
 		int totalRow = sheet.getLastRowNum();// 得到excel的总记录条数
-		for (int i = 1; i <= totalRow; i++) {// 遍历行
+		for (int i = 0; i < totalRow; i++) {// 遍历行
 			Row row = sheet.getRow(i);
 			if (row == null) {
 				continue;
@@ -195,60 +184,16 @@ public class ExcelUtils {
 	}
 
 	/**
-	 * 
-	 * @param filepath
-	 *            filepath 文件全路径
-	 */
-	public static String readExcelSheet(String filepath) {
-		StringBuilder sb = new StringBuilder();
-		InputStream is = null;
-		Workbook wb = null;
-		try {
-			is = new FileInputStream(filepath);
-			wb = WorkbookFactory.create(is);
-			Sheet sheet = wb.getSheetAt(0); // 获得第一个表单
-			int rowNos = sheet.getLastRowNum();// 得到excel的总记录条数
-			for (int i = 1; i <= rowNos; i++) {// 遍历行
-				Row row = sheet.getRow(i);
-				int columNos = row.getPhysicalNumberOfCells();// 表头总共的列数
-				for (int j = 0; j < columNos; j++) {
-					Cell cell = row.getCell(j);
-					cell.setCellType(CellType.STRING);
-					sb.append(cell.getStringCellValue() + " ");
-					// System.out.print(cell.getStringCellValue() + " ");
-				}
-				// System.out.println();
-			}
-		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
-		} finally {
-			try {
-				if (is != null)
-					is.close();
-				if (wb != null)
-					wb.close();
-			} catch (IOException e) {
-				LOGGER.error(e.getMessage(), e);
-			}
-		}
-		return sb.toString();
-	}
-
-	/**
 	 * 创建Excel文件
-	 * 
-	 * @param filepath
-	 *            filepath 文件全路径
-	 * @param sheetName
-	 *            新Sheet页的名字
-	 * @param titles
-	 *            表头
-	 * @param values
-	 *            每行的单元格
+	 * @param filepath filepath 文件全路径
+	 * @param sheetName 新Sheet页的名字
+	 * @param titles 表头
+	 * @param values 每行的单元格
 	 */
 	public static boolean writeExcel(String filepath, String sheetName, List<String> titles,
 			List<Map<String, Object>> values) throws IOException {
 		boolean success = false;
+		OutputStream outputStream = null;
 		if (StringUtils.isBlank(filepath)) {
 			throw new IllegalArgumentException("文件路径不能为空");
 		} else {
@@ -274,9 +219,7 @@ public class ExcelUtils {
 			sheet.setDefaultColumnWidth((short) 15);
 			// 生成样式
 			Map<String, CellStyle> styles = createStyles(workbook);
-			/*
-			 * 创建标题行
-			 */
+			// 创建标题行
 			Row row = sheet.createRow(0);
 			// 存储标题在Excel文件中的序号
 			Map<String, Integer> titleOrder = Maps.newHashMap();
@@ -287,9 +230,7 @@ public class ExcelUtils {
 				cell.setCellValue(title);
 				titleOrder.put(title, i);
 			}
-			/*
-			 * 写入正文
-			 */
+			// 写入正文
 			Iterator<Map<String, Object>> iterator = values.iterator();
 			// 行号
 			int index = 1;
@@ -334,12 +275,16 @@ public class ExcelUtils {
 			}
 
 			try {
-				File file = new File(filepath);
-				OutputStream outputStream = new FileOutputStream(file);
+				outputStream = new FileOutputStream(filepath);
 				workbook.write(outputStream);
-				outputStream.close();
 				success = true;
 			} finally {
+				if (outputStream != null) {
+					outputStream.close();
+				}
+				if (workbook != null) {
+					workbook.close();
+				}
 			}
 			return success;
 		}
@@ -429,16 +374,13 @@ public class ExcelUtils {
 	}
 
 	/**
-	 * 将源文件的内容复制到新Excel文件
-	 * 
-	 * @param srcFilepath
-	 *            源文件全路径
-	 * @param desFilepath
-	 *            目标文件全路径
+	 * 将源文件的内容复制到新Excel文件(可供理解Excel使用,使用价值不大)
+	 * @param srcFilepath 源文件全路径
+	 * @param desFilepath 目标文件全路径
 	 */
-	@SuppressWarnings("resource")
 	public static void writeExcel(String srcFilepath, String desFilepath)
 			throws IOException, EncryptedDocumentException, InvalidFormatException {
+		FileOutputStream outputStream = null;
 		String suffiex = getSuffiex(desFilepath);
 		if (StringUtils.isBlank(suffiex)) {
 			throw new IllegalArgumentException("文件后缀不能为空");
@@ -456,25 +398,44 @@ public class ExcelUtils {
 			for (int k = 0; k < numberOfSheets; k++) {
 				Sheet sheet = workbook.getSheetAt(k);
 				Sheet sheet_des = workbook_des.createSheet(sheet.getSheetName());
-
-				int rowNos = sheet.getLastRowNum();
-				for (int i = 1; i <= rowNos; i++) {
-					Row row = sheet.getRow(i);
-					Row row_des = sheet_des.createRow(i);
-
-					int columNos = row.getPhysicalNumberOfCells();
-					for (int j = 0; j < columNos; j++) {
-						Cell cell = row.getCell(j);
-						Cell cell_des = row_des.createCell(j);
-
-						cell.setCellType(CellType.STRING);
-						cell_des.setCellType(CellType.STRING);
-
-						cell_des.setCellValue(cell.getStringCellValue());
+				if (sheet != null) {
+					int rowNos = sheet.getLastRowNum();
+					for (int i = 0; i <= rowNos; i++) {
+						Row row = sheet.getRow(i);
+						Row row_des = sheet_des.createRow(i);
+						if(row != null){
+							int columNos = row.getLastCellNum();
+							for (int j = 0; j < columNos; j++) {
+								Cell cell = row.getCell(j);
+								Cell cell_des = row_des.createCell(j);
+								if(cell != null){
+									cell.setCellType(CellType.STRING);
+									cell_des.setCellType(CellType.STRING);
+									
+									cell_des.setCellValue(cell.getStringCellValue());
+								}
+							}
+						}
 					}
 				}
+				
+			}
+		}
+		
+		try {
+			outputStream = new FileOutputStream(desFilepath);
+			workbook_des.write(outputStream);
+		} finally {
+			if (outputStream != null) {
+				outputStream.close();
+			}
+			if (workbook != null) {
+				workbook_des.close();
 			}
 		}
 	}
-
+	
+	public static void main(String[] args) {
+		
+	}
 }
