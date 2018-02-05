@@ -15,7 +15,19 @@
 	<mvc:annotation-driven />
 	<!--设置spring容器的扫描范围，扫描类包，将标注Spring注解的类自动转化Bean，同时完成Bean的注入 -->
 	<context:component-scan base-package="com.grt.**,com.dzpykj.**" />
-	
+
 	<!--让spring前端控制器跳过静态的资源请求 location路径, /resources/**这个文件夹下所有资源全部跳过 -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize">
+			<value>104857600</value>
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>utf-8</value>
+		</property>
+		<!-- <property name="defaultEncoding" value="UTF-8" /> -->
+	</bean>
 </beans>

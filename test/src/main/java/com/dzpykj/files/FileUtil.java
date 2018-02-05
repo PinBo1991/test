@@ -19,9 +19,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-public class FileUtils {
+public class FileUtil {
 
-    protected final static Logger logger = LoggerFactory.getLogger(FileUtils.class);
+    protected final static Logger logger = LoggerFactory.getLogger(FileUtil.class);
 
     /**
      * 上传文件，并获取上传文件（单文件上传）
