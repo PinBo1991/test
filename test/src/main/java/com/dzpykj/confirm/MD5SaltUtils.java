@@ -10,9 +10,9 @@ import org.apache.commons.lang3.StringUtils;
  * 密码盐值加密
  * @author ChaiXY
  */
-public class MD5SaltUtil {
+public class MD5SaltUtils {
 
-	public static final String[] HEX_DIGITS = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
+	private static final String[] HEX_DIGITS = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d",
 			"e", "f" };
 
 	/**

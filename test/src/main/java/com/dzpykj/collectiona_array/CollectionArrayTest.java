@@ -1,4 +1,4 @@
-package com.dzpykj;
+package com.dzpykj.collectiona_array;
 
 import java.util.ArrayList;
 import java.util.Arrays;

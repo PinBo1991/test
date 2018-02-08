@@ -23,9 +23,9 @@ import org.slf4j.LoggerFactory;
  * 读取文件内容的工具类(word,pdf,excel)
  * @author ChaiXY
  */
-public class FileReadUtil {
+public class FileReadUtils {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(FileReadUtil.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(FileReadUtils.class);
 
 	/**
 	 * 判断参数文件的类型,并进行读取

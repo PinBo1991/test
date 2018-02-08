@@ -40,8 +40,8 @@ import com.google.common.collect.Maps;
  */
 public class ExcelUtils {
 
-	public static final String OFFICE_EXCEL_XLS = "xls";
-	public static final String OFFICE_EXCEL_XLSX = "xlsx";
+	private static final String OFFICE_EXCEL_XLS = "xls";
+	private static final String OFFICE_EXCEL_XLSX = "xlsx";
 
 	/**
 	 * 读取指定Sheet也的内容
@@ -123,7 +123,6 @@ public class ExcelUtils {
 
 	private static String readExcelSheet(Sheet sheet) {
 		StringBuilder sb = new StringBuilder();
-		
 		if(sheet != null){
 			int rowNos = sheet.getLastRowNum();// 得到excel的总记录条数
 			for (int i = 0; i <= rowNos; i++) {// 遍历行
@@ -142,7 +141,6 @@ public class ExcelUtils {
 				}
 			}
 		}
-		
 		return sb.toString();
 	}
 
@@ -428,9 +426,5 @@ public class ExcelUtils {
 				workbook_des.close();
 			}
 		}
-	}
-	
-	public static void main(String[] args) {
-		
 	}
 }
