@@ -1,9 +1,6 @@
-package com.dzpykj.files.upload;
+package com.dzpykj.confirm;
 
 import java.io.File;
-
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 上传文件暂存数据的桶
@@ -98,25 +95,5 @@ public class FileUploadDataBucket {
 				+ ", desFileName=" + desFileName + ", suffixName=" + suffixName + ", basePath=" + basePath
 				+ ", ownPath=" + ownPath + ", dbFilePath=" + dbFilePath + ", fileSize=" + fileSize + ", contentMD5="
 				+ contentMD5 + "}";
-	}
-    public static void main(String[] args) {
-    	FileUploadDataBucket dataBucket = new FileUploadDataBucket();
-    	dataBucket.setBasePath("aasdfaf");
-    	dataBucket.setContentMD5("aaaaaaaaaaa");
-    	dataBucket.setDbFilePath("''''''''''");
-    	dataBucket.setFileSize("asdf");
-    	System.out.println(dataBucket.toString());
-    	//对象及其属性一行显示
-        System.out.println(ToStringBuilder.reflectionToString(dataBucket));
-        System.out.println(ToStringBuilder.reflectionToString(dataBucket, ToStringStyle.DEFAULT_STYLE));
-        //属性换行显示
-        System.out.println(ToStringBuilder.reflectionToString(dataBucket, ToStringStyle.MULTI_LINE_STYLE));
-        //不显示属性名，只显示属性值，在同一行显示
-        System.out.println(ToStringBuilder.reflectionToString(dataBucket, ToStringStyle.NO_FIELD_NAMES_STYLE));
-        //对象名称简写
-        System.out.println(ToStringBuilder.reflectionToString(dataBucket, ToStringStyle.SHORT_PREFIX_STYLE));
-        //只显示属性
-        System.out.println(ToStringBuilder.reflectionToString(dataBucket, ToStringStyle.SIMPLE_STYLE));
-    	
 	}
 }

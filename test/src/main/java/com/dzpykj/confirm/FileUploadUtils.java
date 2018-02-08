@@ -1,4 +1,4 @@
-package com.dzpykj.files.upload;
+package com.dzpykj.confirm;
 
 import java.io.File;
 import java.io.IOException;
@@ -89,7 +89,4 @@ public class FileUploadUtils {
 		return dateStr+timeMillis+random;
 	}
 	
-	public static void main(String[] args) {
-		System.out.println(new SimpleDateFormat("yyMMddHHmmss").format(new Date()));
-	}
 }

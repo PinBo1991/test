@@ -50,6 +50,8 @@ public class BigDecimalTest {
 		System.out.println(i);
 		System.out.println(i.setScale(2, BigDecimal.ROUND_HALF_EVEN));
 		System.out.println(i.setScale(3, BigDecimal.ROUND_HALF_EVEN));
+		System.out.println(new BigDecimal("1.15").setScale(1, BigDecimal.ROUND_HALF_EVEN));// 1.2
+		System.out.println(new BigDecimal("1.25").setScale(1, BigDecimal.ROUND_HALF_EVEN));// 1.2
 		
 //		System.out.println(i);
 //		System.out.println(i.setScale(2, BigDecimal.ROUND_UP));//不管是不是大于0.5,直接+1
