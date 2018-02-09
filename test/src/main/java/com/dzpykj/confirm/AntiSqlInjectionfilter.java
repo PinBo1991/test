@@ -15,6 +15,19 @@ import javax.servlet.http.HttpServletRequest;
  */
 public class AntiSqlInjectionfilter extends AbstractFilter {
 
+	public static final String keyWords;
+
+	static {
+		// 过滤掉的sql关键字，可以手动添加
+		StringBuilder sb = new StringBuilder();
+		sb.append("'|and|exec|execute|insert|select|delete|update|count|drop|*|%|chr|mid|master|truncate|");
+		sb.append("char|declare|sitename|net user|xp_cmdshell|;|or|-|+|,|like'|and|exec|execute|insert|create|drop|");
+		sb.append("table|from|grant|use|group_concat|column_name|");
+		sb.append("information_schema.columns|table_schema|union|where|select|delete|update|order|by|count|*|");
+		sb.append("chr|mid|master|truncate|char|declare|or|;|-|--|+|,|like|//|/|%|#");
+		keyWords = sb.toString();
+	}
+	
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
@@ -39,18 +52,10 @@ public class AntiSqlInjectionfilter extends AbstractFilter {
 
 	// 效验
 	private boolean sqlValidate(String paramValue) {
-		paramValue = paramValue.toLowerCase();// 统一转为小写
-		StringBuilder sb = new StringBuilder();
-		sb.append("'|and|exec|execute|insert|select|delete|update|count|drop|*|%|chr|mid|master|truncate|");
-		sb.append("char|declare|sitename|net user|xp_cmdshell|;|or|-|+|,|like'|and|exec|execute|insert|create|drop|");
-		sb.append("table|from|grant|use|group_concat|column_name|");
-		sb.append("information_schema.columns|table_schema|union|where|select|delete|update|order|by|count|*|");
-		sb.append("chr|mid|master|truncate|char|declare|or|;|-|--|+|,|like|//|/|%|#");// 过滤掉的sql关键字，可以手动添加
-
-		String badStr = sb.toString();
-		String[] badStrs = badStr.split("\\|");
-		for (int i = 0; i < badStrs.length; i++) {
-			if (paramValue.indexOf(badStrs[i]) >= 0) {
+		paramValue = paramValue.toLowerCase();
+		String[] keyWordsArray = keyWords.split("\\|");
+		for (int i = 0; i < keyWordsArray.length; i++) {
+			if (paramValue.indexOf(keyWordsArray[i]) >= 0) {
 				return true;
 			}
 		}
