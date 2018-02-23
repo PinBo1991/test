@@ -25,6 +25,8 @@ public class AntiSqlInjectionfilter extends AbstractFilter {
 		sb.append("table|from|grant|use|group_concat|column_name|");
 		sb.append("information_schema.columns|table_schema|union|where|select|delete|update|order|by|count|*|");
 		sb.append("chr|mid|master|truncate|char|declare|or|;|-|--|+|,|like|//|/|%|#");
+//		sb.append("'|%|--|and|or|not|use|insert|delete|update|select|count|group|union");
+//		sb.append("|create|drop|truncate|alter|grant|execute|exec|xp_cmdshell|call|declare|source|sql");
 		keyWords = sb.toString();
 	}
 	

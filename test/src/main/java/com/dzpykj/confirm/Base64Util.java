@@ -20,7 +20,6 @@ import org.apache.commons.codec.binary.Base64;
 /**
  * base64工具
  * @author ChaiXY
- *
  */
 public class Base64Util {
 

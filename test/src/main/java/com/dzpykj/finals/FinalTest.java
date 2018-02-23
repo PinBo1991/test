@@ -14,7 +14,13 @@ public class FinalTest {
 		System.out.println(map);
 	}
 	
+	public static void test01(String str){
+		StringBuffer sb = new StringBuffer();
+		sb.append(str);
+		System.out.println(sb.toString());
+	}
+	
 	public static void main(String[] args) {
-		
+		test01(null);
 	}
 }
